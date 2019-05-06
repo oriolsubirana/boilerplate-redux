@@ -10,6 +10,8 @@ const defaultUserState = (): UserProfileState => ({
     firstname: 'Jane Doe',
 });
 
+//llega la action y si nos llega lo que esperamos, hacemos el update del 
+//estado 
 export const userProfileReducer = (state = defaultUserState(), action: BaseAction) => {
     switch (action.type) {
         case actionEnums.UPDATE_USER_PROFILE_NAME:

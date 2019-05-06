@@ -1,19 +1,23 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HelloWorldContainer, NameEditConainer } from './components';
-import { createStore } from 'redux';
+import { HelloWorldContainer, NameEditConainer, MemberAreaContainer } from './components';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { reducers } from './reducers';
 import { Provider } from 'react-redux';
 
-const store = createStore(reducers,
-    window['__REDUX_DEVTOOLS_EXTENSION__'] &&
-    window['__REDUX_DEVTOOLS_EXTENSION__']()
-);
+import reduxThunk from 'redux-thunk';
+
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
+
+const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(reduxThunk)
+));
 
 ReactDOM.render(
     <Provider store={store}>
         <HelloWorldContainer />
         <NameEditConainer />
+        <MemberAreaContainer />
     </Provider>,
     document.getElementById('root')
 )

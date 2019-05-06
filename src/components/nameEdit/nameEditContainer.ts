@@ -9,6 +9,8 @@ const mapStateToProps = (state: State) => ({
     username: state.userProfileReducer.firstname,
 });
 
+//cuando onChange se dispara hace un dispatch y se manda a 
+//todos los reducers de la aplicación
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     onChange: (name: string) => dispatch(updateUserProfilename(name)),
 });
