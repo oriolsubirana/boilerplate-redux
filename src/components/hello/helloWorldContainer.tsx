@@ -1,14 +1,18 @@
 import * as React from 'react';
 import { HelloWorldComponent } from './helloWorld';
+import { State } from '../../reducers';
+import { connect } from 'react-redux';
 
-interface Props {
-}
 
-export const HelloWorldContainer = (props: Props) => {
+const mapStateToProps = (state: State) => ({
+    username: state.userProfileReducer.firstname,
+});
 
-    const [username, setUsername] = React.useState('John Doe');
+const mapDispatchProps = (dispatch) => ({
 
-    return (
-        <HelloWorldComponent username={username} />
-    )
-}
+});
+
+export const HelloWorldContainer = connect(
+    mapStateToProps,
+    mapDispatchProps
+)(HelloWorldComponent);
